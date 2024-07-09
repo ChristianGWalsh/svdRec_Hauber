@@ -12,6 +12,21 @@ class FunkSVD:
         self.rmse_values = []
 
     def fit(self, ratings):
+        
+       # Converting plays to rating
+       # This is subject to change
+        for plays in ratings[:,2]:
+           if plays >= 1 and plays <= 5:
+               plays = 1
+           elif plays >= 6 and plays <= 10:
+               plays = 2
+           elif plays >= 11 and plays <= 20:
+               plays = 3
+           elif plays >= 21 and plays <= 50:
+               plays = 4
+           elif plays >= 51:
+               plays = 5
+                
         self.mean_rating = np.mean(ratings[:, 2])
         self.std_rating = np.std(ratings[:, 2])
         

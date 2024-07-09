@@ -17,16 +17,20 @@ class TrainTestSplit:
         
         # This has is a very simple fix, will come later
         # Use for movieLen
-        train_ratings = train_data[['user_id', 'item_id', 'rating']].values
-        test_ratings = test_data[['user_id', 'item_id', 'rating']].values
+        # train_ratings = train_data[['user_id', 'item_id', 'rating']].values
+        # test_ratings = test_data[['user_id', 'item_id', 'rating']].values
         
         # Use for LastFM
         # train_ratings = train_data[['user_id', 'artist_id', 'plays']].values
         # test_ratings = test_data[['user_id', 'artist_id', 'plays']].values
+        
+        # Use for MillionSong
+        train_ratings = train_data[['user_id', 'song_id', 'plays']].values
+        test_ratings = test_data[['user_id', 'song_id', 'plays']].values
 
         # Fit the model to the training data
         self.model.fit(train_ratings)
-        
+   
         # Predict the ratings for the test data
         test_preds = []
         for user_id, item_id, _ in test_ratings:
